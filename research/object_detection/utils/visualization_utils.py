@@ -22,7 +22,11 @@ The functions do not return a value, instead they modify the image itself.
 import collections
 import functools
 # Set headless-friendly backend.
-import matplotlib; matplotlib.use('Agg')  # pylint: disable=multiple-statements
+import os
+import matplotlib as mpl
+if os.environ.get('DISPLAY','') == '':
+ print('no display found. Using non-interactive Agg backend')
+mpl.use('Agg')
 import matplotlib.pyplot as plt  # pylint: disable=g-import-not-at-top
 import numpy as np
 import PIL.Image as Image
